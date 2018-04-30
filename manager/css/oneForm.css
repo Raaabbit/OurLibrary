@@ -1,0 +1,37 @@
+/* 精确搜索表单 */
+.singleForm{
+    display: flex;
+    overflow: hidden;
+    margin: 80px auto;
+    width: 460px;height: 60px;
+    border:2px solid #66ccb8;
+    border-radius: 30px;
+    background-color: #FFF;
+}
+/* 书号搜索框 */
+.singleForm input{
+    display: block;
+    width: 400px;height: 60px;
+    font: 20px/60px "Microsoft YaHei",sans-serif;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+}
+/* 设置占位符文字大小 */
+::-webkit-input-placeholder { font-size: 20px;}
+::-moz-placeholder { font-size: 20px;} /* firefox 19+ */
+:-ms-input-placeholder {font-size: 20px;} /* Internet Explorer 10+ */
+:-moz-placeholder { font-size: 20px; } /* firefox 14-18 */
+.singleForm>label{
+    display: block;
+    width: 60px;
+    height: 60px;
+    font: 20px/60px "Microsoft YaHei",sans-serif;
+    text-align: center;
+    background-color: #FFF;
+    margin:0 auto;
+    cursor: pointer;
+}
+.singleForm>label:hover{
+    color: #66ccb8;
+}

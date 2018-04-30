@@ -1,0 +1,33 @@
+/* 设置占位符文字大小 */
+::-webkit-input-placeholder { font-size: 20px;}
+::-moz-placeholder { font-size: 20px;} /* firefox 19+ */
+:-ms-input-placeholder {font-size: 20px;} /* Internet Explorer 10+ */
+:-moz-placeholder { font-size: 20px; } /* firefox 14-18 */
+.loginMsg{
+    width: 500px;
+    height: 180px; 
+    box-sizing: border-box;
+    overflow: hidden;
+ }
+ .loginMsg input{
+    outline: none;
+    border: none;
+    height: 64px;
+    width: 500px;
+    box-sizing: border-box;
+    padding: 20px;
+    font:20px/64px sans-serlf;
+ }
+ .loginMsg>p{
+     font:22px/34px sans-serlf;
+     text-align: center;
+     margin: 10px;
+     color: rgb(139, 133, 133);
+ }
+ .loginMsg>button{
+     position: absolute;
+     width: 100%;
+     left: 0px;
+     right: 0px;
+     bottom: 0px;
+ }

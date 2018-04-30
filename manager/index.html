@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../common/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/side.css">
+    <link rel="stylesheet" href="./css/tab.css">
+    <link rel="stylesheet" href="css/searchBook.css">
+    <link rel="stylesheet" href="css/multipleForm.css">
+    <link rel="stylesheet" href="css/oneForm.css">
+    <link rel="stylesheet" href="./css/bookshelf.css">
+    <title>OurLibrary-managers</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="m-side">
+            <p class="loginReq">请登录</p>
+            <div class="u-info none">
+                <p class="name">
+                    <span>管理员</span>，您好</p>
+                <label for="exit">
+                    退出登录
+                    <button id="exit" style="display:none"></button>
+                </label>
+            </div>
+            <ul class="u-menu">
+                <li>查阅书籍</li>
+                <li>添加图书</li>
+                <li>删除图书</li>
+                <li>更改图书</li>
+                <li>查询学生</li>
+                <li>学生注册</li>
+            </ul>
+        </div>
+        <div class="m-main">
+            <div id="searchBook">
+                <!-- 查询选项 -->
+                <div id="hdtabs" class="m-tabs"></div>
+                <div class="tips">
+                    <p>管理员你好</p>
+                    <p>您可以在这里查看图书信息</p>
+                </div>
+                <!-- 精确查找表单 -->
+                <form id="forExact">
+                    <input type="text" id="bookID" placeholder="请输入书号">
+                    <label for="exactBtn">GO
+                        <button id="exactBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <!-- 模糊查找表单 -->
+                <form id="forFuzzy">
+                    <div class="m-item">
+                        <input type="text" id="bookName" placeholder="请输入书名">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="publisher" placeholder="请输入出版社">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="author" placeholder="请输入作者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="translator" placeholder="请输入翻译者">
+                    </div>
+                    <label for="fuzzyBtn">GO
+                        <button id="fuzzyBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <!-- 图书信息列表 -->
+                <ul classus="bookList listforSearch none"></ul>
+            </div>
+            <div id="addBook" >
+                <div class="tips">
+                    <p>您可以向书库添加书籍</p>
+                    <p>所有的选项都是必填的</p>
+                </div>
+                <form id="addBookForm" class="multipleForm">
+                    <div class="m-item">
+                        <input type="text" id="addBookID" placeholder="请输入书号">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookName" placeholder="请输入书名">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookPub" placeholder="请输入出版社">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookTime" placeholder="请输入出版时间">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookAut" placeholder="请输入作者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookTra" placeholder="请输入翻译者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookSta" placeholder="请输入可借状态">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="addBookCount" placeholder="请输入数量">
+                    </div>
+                    <label for="addBtn">ADD
+                        <button id="addBtn" style="display:none"></button>
+                    </label>
+                </form>
+            </div>
+            <div id="deleteBook">
+                <div class="tips">
+                    <p>请输入要删除的书号和数量</p>
+                    <p>两项均为必填项,数量大于0</p>
+                </div>
+                <!-- 删除图书表单 -->
+                <form id="delBookForm" class="multipleForm">
+                    <input type="text" id="delBookID" placeholder="请输入书号">
+                    <input type="text" id="delBookCount" placeholder="请输入数量">
+                    <label for="delBtn">DEL
+                        <button id="delBtn" style="display:none"></button>
+                    </label>
+                </form>
+
+            </div>
+            <div id="changeBook">
+                <div class="tips">
+                    <p>您可以更改图书信息</p>
+                    <p>书号是不可变的,其他项选填</p>
+                </div>
+                <form id="changeBookForm" class="multipleForm">
+                    <div class="m-item">
+                        <input type="text" id="changeBookID" placeholder="请输入书号">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookName" placeholder="请输入书名">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookPub" placeholder="请输入出版社">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookTime" placeholder="请输入出版时间">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookAut" placeholder="请输入作者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookTra" placeholder="请输入翻译者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookSta" placeholder="请输入可借状态">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="changeBookCount" placeholder="请输入数量">
+                    </div>
+                    <label for="changeBtn">ADD
+                        <button id="changeBtn" style="display:none"></button>
+                    </label>
+                </form>
+            </div>
+            <div id="searchStu">
+                <div class="tips">
+                    <p>管理员你好</p>
+                    <p>您可以在这里查看学生信息</p>
+                </div>
+                <!-- 精确查找学生表单 -->
+                <form id="searchStuForm" class="singleForm">
+                    <input type="text" id="searchStuID" placeholder="请输入学号">
+                    <label for="searchStuBtn">GO
+                        <button id="searchStuBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <ul classus="bookList listforSearch none"></ul>
+            </div>
+            <div id="registerStu">
+                <div class="tips">
+                    <p>录入学生信息</p>
+                    <p>所有的选项都是必填的</p>
+                </div>
+                <form id="regStuForm" class="multipleForm">
+                    <div class="m-item">
+                        <input type="text" id="regStuID" placeholder="请输入学号">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="regStuPsd" placeholder="请输入密码">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="regStuName" placeholder="请输入姓名">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="regStuBalance" placeholder="请输入卡余额">
+                    </div>
+
+
+                    <label for="regBtn">REGISTER
+                        <button id="regBtn" style="display:none"></button>
+                    </label>
+                </form>
+            </div>
+
+            <div class="g-mask none">
+                <div class="g-model loginMsg none">
+                    <div class="managerID">
+                        <input type="text" id="managerID" placeholder="请输入账号">
+                    </div>
+                    <div class="password">
+                        <input type="password" id="password" placeholder="请输入密码">
+                    </div>
+                    <div class="control">
+                        <p>登录</p>
+                        <p>取消</p>
+                    </div>
+                </div>
+                <!-- 图书信息详情容器存在内容动态构建 -->
+                <div class="g-model detail none">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../common/Tabs.js"></script>
+    <script src="../common/bookforManager.js"></script>
+    <script src="js/works/searchBook.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/works/login.js"></script>
+    <script src="./js/works/delete.js"></script>
+</body>
+
+</html>

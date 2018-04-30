@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../common/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/side.css">
+    <link rel="stylesheet" href="./css/tab.css">
+    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/pay.css">
+    <link rel="stylesheet" href="./css/bookshelf.css">
+    <title>OurLibrary-students</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="m-side">
+            <p class="loginReq">登录后开启新世界</p>
+            <div class="u-info none">
+                <p class="name">亲爱的
+                    <span>杨昱昊</span>，欢迎～</p>
+                <p class="balance">卡余额：
+                    <span>20</span>￥</p>
+                <label for="exit">
+                    退出登录
+                    <button id="exit" style="display:none"></button>
+                </label>
+            </div>
+            <ul class="u-menu">
+                <li>查阅书籍</li>
+                <li>我的书架</li>
+                <li>充值书卡</li>
+            </ul>
+        </div>
+        <div class="m-main">
+            <div id="search">
+                <!-- 查询选项 -->
+                <div id="hdtabs" class="m-tabs"></div>
+                <div class="tips">
+                    <p>欢迎来到OurLibrary</p>
+                    <p>一起来读书吧</p>
+                </div>
+                <!-- 精确查找表单 -->
+                <form id="forExact">
+                    <input type="text" id="bookID" placeholder="请输入书号">
+                    <label for="exactBtn">GO
+                        <button id="exactBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <!-- 模糊查找表单 -->
+                <form id="forFuzzy">
+                    <div class="m-item">
+                        <input type="text" id="bookName" placeholder="请输入书名">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="publisher" placeholder="请输入出版社">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="author" placeholder="请输入作者">
+                    </div>
+                    <div class="m-item">
+                        <input type="text" id="translator" placeholder="请输入翻译者">
+                    </div>
+                    <label for="fuzzyBtn">GO
+                        <button id="fuzzyBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <!-- 图书信息列表 -->
+                <ul class="bookList listforSearch none"></ul>
+            </div>
+
+            <div id="bookshelf">
+                <!-- 动态构建 -->
+                <div class="tips">
+                    <!-- 获取到用户数据之后，如果没有书，显示上面的信息 -->
+                    <!--<p>书架空空如也</p>-->
+                    <!--<p>去借几本书吧</p>-->
+                    <!-- 如果有书，显示下面的内容 -->
+                    <p>你拥有的书都在这里啦</p>
+                    <p>可以在这里还书哦</p>
+                </div>
+                <!-- 边框一直都有，内容动态构建 -->
+                <ul class="bookList listforHave">
+                    <li class="bookCard">
+                        <p class="bookID">2-E-33</p>
+                        <p class="bookName">《软件体系结构》</p>
+                        <p class="borrowDate">借书日：2018-2-14</p>
+                        <div class="control">
+                            <p>详情</p>
+                            <p>还书</p>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="recharge">
+                <div class="tips">
+                    <p>请输入要充值的金额</p>
+                    <p>(充值整数金额会变帅)</p>
+                </div>
+                <form id="forPay">
+                    <input type="text" id="amount" placeholder="$o$">
+                    <label for="payBtn">PAY
+                        <button id="payBtn" style="display:none"></button>
+                    </label>
+                </form>
+                <div class="tips">
+                    <!-- 根据充值返回信息进行显示 -->
+                    <p class="pay_sucess none">充值成功～</p>
+                    <p class="pay_failed none">充值失败了哎，去找管理员试试吧</p>
+                </div>
+            </div>
+
+            <div class="g-mask none">
+                <div class="g-model loginMsg none">
+                    <div class="studentID">
+                        <input type="text" id="studentID" placeholder="请输入账号">
+                    </div>
+                    <div class="password">
+                        <input type="password" id="password" placeholder="请输入密码">
+                    </div>
+                    <div class="control">
+                        <p>登录</p>
+                        <p>取消</p>
+                    </div>
+                </div>
+                <!-- 容器存在内容动态构建 -->
+                <div class="g-model detail none">
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../common/Tabs.js"></script>
+    <script src="../common/bookforHave.js"></script>
+    <script src="../common/bookforSearch.js"></script>
+    <script src="../common/bookshelf.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/works/search.js"></script>
+    <script src="./js/works/login.js"></script>
+    <script src="./js/works/pay.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+.loginReq {
+    text-align: center;
+    height: 160px;
+    font: 30px/160px sans-serlf;
+    overflow: hidden;
+}
+
+.loginReq:hover {
+    color: #66ccb8;
+}
+
+.u-info {
+    height: 160px;
+    position: relative;
+}
+
+.name {
+    text-align: center;
+    font: 26px/120px sans-serlf;
+    height: 120px;
+}
+
+.balance {
+    position: absolute;
+    left: 20px;
+    font: 20px sans-serlf;
+    text-align: center;
+}
+
+.u-info>label {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    right: 5px;
+    font: 15px sans-serlf;
+}
+
+.u-info>label:hover {
+    color: #66ccb8;
+}
+
+.u-menu {
+    color: rgb(83, 81, 81);
+    border-top: 4px solid rgb(172, 166, 166);
+}
+
+.u-menu>li {
+    height: 100px;
+    font: 25px/100px sans-serlf;
+    text-align: center;
+    border-right: 5px solid rgba(255, 255, 255, 0);
+}
+.u-menu>li+li{
+    border-top: 1px solid rgb(172, 166, 166);
+}
+.u-menu>.z-active{
+    border-right-color: #66ccb8;
+    color: #66ccb8;   
+}
