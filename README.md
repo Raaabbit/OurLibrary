@@ -1,12 +1,12 @@
-# OurLibrary前端说明文档
+# OurLibrary说明文档
 
 <p align="right">By 杨昱昊</p>
 
+![学生端展示](./show.png)
 ## 技术选型
 
-* 采用HTML5,CSS3以及原生JavaScript开发
-* 完全采用异步数据传输，完全由前端进行视图渲染，实现前后端分离
-
+* 采用HTML5,CSS3以及原生JavaScript开发。
+* 完全采用异步数据传输，完全由前端进行视图渲染，实现前后端分离。
 
 ## 功能说明
 
@@ -37,7 +37,7 @@
 
 #### 查看已借阅图书&还书
 
-所有的已借阅图书的基本信息都保存在了本地，点击“**我的书架**”的时候，进行一次DOM的渲染，更新页面上呈现的信息。
+所有的已借阅图书的基本信息都保存在了本地，点击"**我的书架**”的时候，进行一次DOM的渲染，更新页面上呈现的信息。
 
 在页面上生成了图书卡片，包含的功能按钮：**续借和还书**。
 
@@ -102,52 +102,57 @@
 ## 交互规约
 ### 学生/管理员精确查询
 由于bookID是唯一的，所以精确查询可以找到这本书所有的信息
-* 接口：/
+* 接口：/searchBook
 * 请求方式：POST
 * 请求体：
-```
+```json
 {
     "bookID":"3-E-33"
 }
 ```
 * 响应体JSON：
-```
+```json
 {
-    "bookName":"计算机算法设计与分析",   // 书名
-    “publisher”:"电子工业出版社",       // 出版社
-    "time":"2012-2",                 // 出版时间
-    "author":"王晓东",                // 作者
-    "translator":"",                 // 翻译者
-    "time":"2012-2".                 // 时间
-    "count":2,                       // 当前馆中数量        
-    "status":true                    // 是否可借
+    "code":200,
+    "result":{
+        "bookName":"计算机算法设计与分析",   // 书名
+        "publisher":"电子工业出版社",       // 出版社
+        "time":"2012-2",                 // 出版时间
+        "author":"王晓东",                // 作者
+        "translator":"",                 // 翻译者
+        "time":"2012-2".                 // 时间
+        "count":2,                       // 当前馆中数量        
+        "status":true                    // 是否可借
+    }
+    
 }
 ```
 
 ### 学生/管理员模糊查询
 本操作提供４个查询参数，均为可选参数，查询得到包含一本或多本图书列表
-* 接口：
+* 接口：search
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：用户在表单中输入的数据，组织为json格式
 
-```
+```json
 {
     "bookName":"计算机算法设计与分析",   // 书名
-    “publisher”:"",                  // 出版社，未填写
+    "publisher”:"",                  // 出版社，未填写
     "author":"",                     // 作者，未填写
     "translator":"",                 // 翻译者，未填写
 }
 ```
 * 响应体：由于不是通过唯一标志进行的查询，所以可能在数据库中检索到多本书，进行统一组织，一同发送到前端
-```
+```json
 {
+    "code":200,
     //图书列表
-    "bookList":[
+    "result":[
         {
             "bookID":"3-E-22",
             "bookName":"计算机算法设计与分析",   // 书名
-            “publisher”:"电子工业出版社",       // 出版社
+            "publisher":"电子工业出版社",       // 出版社
             "time":"2012-2",                 // 出版时间
             "author":"王晓东",                // 作者
             "translator":"",                 // 翻译者
@@ -157,7 +162,7 @@
         {
             "bookID":"3-E-22",
             "bookName":"计算机算法设计与分析",   // 书名
-            “publisher”:"东南大学出版社出版社",  // 出版社
+            "publisher":"东南大学出版社出版社",  // 出版社
             "time":"2011-2",                 // 出版时间
             "author":"XXX",                  // 作者
             "translator":"XXX",              // 翻译者
@@ -169,77 +174,83 @@
 ```
 ### 学生登录
 学生进行所有操作的前置条件
-* 接口：
+* 接口：/studentLogin
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
     "studentID":"71116216",      // 用户名，如学号/一卡通
     "password":"xxxxxxxx"        // 密码
 }
 ```
 * 响应体JSON：
-```javascript
+```json
 {
-    "status":"200",             // 根据返回的状态码，判断是否成功
-    "name":"杨昱昊",
-    "balance":10,              
-    "books":[
-        {
-            "bookName":"算法",
-            "borrowDate"："2018-3-1"
-        },
-        {
-            "bookName":"算法",
-            "borrowDate"："2018-3-1"
-        }
-        {
-            "bookName":"算法",
-            "borrowDate"："2018-3-1"
-        }
-    ]
+    "code":"200",             
+    "result":{
+        "name":"杨昱昊",
+        "balance":10,              
+        "books":[
+            {
+                "bookName":"算法",
+                "borrowDate"："2018-3-1"
+            },
+            {
+                "bookName":"算法",
+                "borrowDate"："2018-3-1"
+            }
+            {
+                "bookName":"算法",
+                "borrowDate"："2018-3-1"
+            }
+        ]
+    }
+    
 }
 ```
 
 ### 学生借书
-* 接口：
+* 接口：/borrow
 * 请求方式：POST
 * 请求头：bookID
 * 请求体：
-```
+```json
 {
     "studentID":"213161673",      // 用户名，如学号/一卡通
     "bookID":"3-E-2"              // 书号
 }
 ```
 * 响应体JSON：
-```
+```json
 {
-    "status":"200",             // 根据返回的状态码，判断是否成功
-    "message":"借阅成功"，
-    "books":[
-        {
-            "nookName":"算法",
-            "borrowDate"："2018-3-1"
-        },
-        {
-            "nookName":"算法",
-            "borrowDate"："2018-3-1"
-        }
-        {
-            "nookName":"算法",
-            "borrowDate"："2018-3-1"
-        }
-    ]
+    "code":"200",             
+    "result":{
+        "message":"借阅成功",
+        "books":[
+            {
+                "nookName":"算法",
+                "borrowDate"："2018-3-1"
+            },
+            {
+                "nookName":"算法",
+                "borrowDate"："2018-3-1"
+            }
+            {
+                "nookName":"算法",
+                "borrowDate"："2018-3-1"
+            }
+        ]
+    }
+    
 }
 ```
 ### 学生还书
-* 接口：
+* 接口：/returnBook
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
     "studentID":"71116216",      // 用户名，如学号/一卡通
     "bookId":"3-E-22"            // 书号
@@ -247,24 +258,28 @@
 ```
 * 响应体JSON：
   如果没有超期，直接还书成功
-```
+```json
 {
-    "overdue":"0",           // 是否超期，1表示超期，0表示没有超期，后端计算得到
-    "enough":true,           // 如果足够，询问用户是否确认还书，确认则发送下一个请求
-    "books":[
-        {
-            "nookName":"算法",
-            "borrowDate"："2018-3-1"
-        },
-        {
-            "nookName":"算法",
-            "borrowDate"："2018-3-1"
-        }
-    ]
+    "code":"200",
+    "result":{
+        "overdue":"0",           // 是否超期，1表示超期，0表示没有超期，后端计算得到
+        "enough":true,           // 如果足够，询问用户是否确认还书，确认则发送下一个请求
+        "books":[
+            {
+                "nookName":"算法",
+                "borrowDate"："2018-3-1"
+            },
+            {
+                "nookName":"算法",
+                "borrowDate"："2018-3-1"
+            }
+        ]
+    }
+    
 }
 ```
 如果超期，发给前端罚金数，前端提示用户交钱
-```
+```json
 {
     "overdue":"1",           // 是否超期，1表示超期，0表示没有超期，后端计算得到
     "fine":2,                // 超期罚金
@@ -277,98 +292,102 @@
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
     "studentID":"71116216",      // 用户名，如学号/一卡通
     "amount":"100"               // 金额
 }
 ```
 * 响应体JSON：
-```
+```json
 {
-    "status":200,            // 充值成功
-    "balance":100,           // 卡中现在的金额
+    "code":200,            // 充值成功
+    "message":100,           // 卡中现在的金额
 }
 ```
 
 ### 管理员登录
-* 接口：
+* 接口：/managerLogin
 * 请求方式：POST
 * 请求头：bookID
 * 请求体：
-```
+```json
 {
     "managerID":"xxxxxxxx",      // 用户名，工号
     "password":"yyyyyyyy"       // 密码
 }
 ```
 * 响应体JSON：
-```
+```json
 {
-    "status":"200",             // 根据返回的状态码，判断是否成功
+    "code":"200",             // 根据返回的状态码，判断是否成功
     "message":"登录成功"
 }
 ```
 
 ### 管理员添加学生信息
-* 接口：
+* 接口：/addStudent
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
-    "studentID":”71116216“,
+    "studentID":”71116216",
     "password":"xxxxxxxx",
     "name":"杨昱昊".
     "balance":"10"       
 }
 ```
 * 响应体：
-```
+```json
 {
-    "status":200,
+    "code":200,
     "message":"注册成功"
 }
 ```
 ### 管理员查询学生信息
-* 接口：
+* 接口：/searchStudents
 * 请求方式：GET
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
-    "studentID":”71116216“      
+    "studentID":”71116216"      
 }
 ```
 * 响应体：
-```
+```json
 {
-    "name":"xxx",
-    "balance":10,
-    "books":[
-        {
-            "bookID":"3-E-33",
-            "bookName":"算法"
-            "borrowDate":"2018-3-1"
-        },
-        {
-            "bookID":"3-E-45",
-            "bookName":"数据结构"
-            "borrowDate":"2018-3-２　"
-        }
-    ]
+    "code":200,
+    "result":{
+        "name":"xxx",
+        "balance":10,
+        "books":[
+            {
+                "bookID":"3-E-33",
+                "bookName":"算法"
+                "borrowDate":"2018-3-1"
+            },
+            {
+                "bookID":"3-E-45",
+                "bookName":"数据结构"
+                "borrowDate":"2018-3-２　"
+            }
+        ]
+    }
+    
 }
 ```
 ### 管理员添加图书
-* 接口：
+* 接口：/addBook
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
-    ”bookID“:"3-E-56",               //书籍id
+    "bookID":"3-E-56",               //书籍id
     "bookName":"计算机算法设计与分析",   // 书名
-    “publisher”:"电子工业出版社",       // 出版社
+    "publisher":"电子工业出版社",       // 出版社
     "time":"2012-2-12",              // 出版时间
     "author":"王晓东",                // 作者
     "translator":"",                 // 翻译者
@@ -377,42 +396,42 @@
 }
 ```
 * 响应体：
-```
+```json
 {
-    "status":200,
+    "code":200,
     "message":"入库成功"
 }
 ```
 ### 管理员删除图书
-* 接口：
+* 接口：/deleteBook
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
-    ”bookID“:"3-E-56",               //书籍id
-    ”count“:1                        //删除数量    
+    "bookID":"3-E-56",               //书籍id
+    "count":1                        //删除数量    
 }
 ```
 * 响应体：
-```
+```json
 {
-    "status":200,
+    "code":200,
     "message":"删除成功"
 }
 ```
 
 ### 管理员修改图书信息
 bookID是不可修改的
-* 接口：
+* 接口：/changeBook
 * 请求方式：POST
 * 请求头：Content-Type:application/json
 * 请求体：
-```
+```json
 {
-    ”bookID“:"3-E-56",               //书籍id
+    "bookID":"3-E-56",               //书籍id
     "bookName":"",   // 书名
-    “publisher”:"电子工业出版社",       // 出版社
+    "publisher":"电子工业出版社",       // 出版社
     "time":"",  　　　                 // 出版时间
     "author":"",      　              // 作者
     "translator":"",                 // 翻译者
@@ -421,9 +440,9 @@ bookID是不可修改的
 }
 ```
 * 响应体：
-```
+```json
 {
-    "status":200,
+    "code":200,
     "message":"修改成功"
 }
 ```
